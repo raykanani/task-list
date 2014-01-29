@@ -1,68 +1,90 @@
+//User can add task to list-item
+//User can click on task in list-item and mark complete
+//User can click on task in list-item and remove task
+
 $(function(){
   var input;
+  var valid;
+  var $inputBox = $('#input-box');
+  var $orderList = $('ol');
+  var $buttons = $('.button');
+  //Can I make these variables cleaner by pulling them from the HTML file?
+  //Not sure how to select only part of the list item?
+  var listItemOpen = ('<li><div class="task box-shadow">');
+  var listItemClose = ('</div><div class="completed button hidden"><span class="symbol">&#10003;</span></div><div class="remove button hidden"><span class="symbol">&#10005;</span></div></li>');
   
-  //Get input from text box
-  var getInput = function(){
-    input = $('#input-box').val();
-    $('#input-box').val("");
+  //Views
+  //
+  //Add input to list
+  var appendList = function(){
+    $orderList.append(listItemOpen + input + listItemClose);
   };
   
-  //Add input to list
+  //Show or hide buttons
+  var toggleButtons = function(){
+    $(this).siblings().toggleClass("hidden");
+  };
+  
+  //Toggle completed effect (opacity)
+  var toggleCompleted = function(){
+    $(this).siblings('.task').toggleClass("completed-effect").toggleClass("box-shadow");
+  };
+  
+  //Remove parent element
+  var removeTask = function(){
+    $(this).parent().remove();
+  };
+  
+  
+  //Controllers
+  //
+  //If valid, get input from text box
+  var getInput = function(){
+    if($inputBox.val()){
+      input = $inputBox.val();
+      $inputBox.val("");
+      valid = true;
+    } else{
+      valid = false;
+    }
+  };
+  
+  //If valid, add input to list
   var addToList = function(){
-    getInput();
-    //Why does this work if input is blank with spaces
-    if (input !== "" && input){
-      $('ol').append('<li><div class="task">' + input + '</div><div class="completed-button">completed</div></li>');
+    if (valid){
+      appendList();
     }else{
       console.log('can\'t be blank');
     }
   };
+  
+  //When user clicks on task div
+  //show buttons
+  $orderList.on('click', '.task', toggleButtons);
+  
+  //When user clicks on completed button
+  //Add completed effect to sibling task class
+  $orderList.on('click', '.completed', toggleCompleted);
+  
+  //When user clicks remove button
+  //Remove list element
+  $orderList.on('click', '.remove', removeTask);
       
+  
   //Add list-item to ordered list when user hits submit
-  $('.submit').on('click', function(){
-    addToList();
-  });
+  //I am having trouble when I modify the button type to 'submit'?
+  //The page reloads
+  $('submit').click(
+    getInput,
+    addToList
+  );
   
   $('#input-box').keydown(function(e){
     if (e.which == 13){
       e.preventDefault();
+      getInput();
       addToList();
     }
-  });
-  
-  //Add box-shadow effect when user clicks task-box
-  //Allow for remove of item
-  $('ol').on('click', '.task', function(){
-    $(this).toggle(function(){
-      $(this).siblings().text('remove');
-      $(this).siblings().removeClass('completed-button').removeClass('completed-effect');
-      $(this).siblings().addClass('remove-button');
-      $(this).addClass('box-shadow');
-      $(this).siblings().addClass('box-shadow');
-    }, function(){
-      $(this).siblings().text('complete');
-      $(this).siblings().addClass('completed-button');
-      $(this).siblings().removeClass('remove-button');
-      $(this).removeClass('box-shadow');
-      $(this).siblings().removeClass('box-shadow');
-    });
-  });
-  
-  //When user clicks on .remove class, remove corresponding list item
-  $("ol").on('click', '.remove-button', function(){
-    $(this).parent().remove();
-  });
-  
-  //Add transparent effect when user clicks complete
-  //Allow for undo
-  $('ol').on('click', '.completed-button', function(){
-    $(this).toggle(function(){
-      $(this).text('undo');
-      $(this).parent().addClass('completed-effect');
-    }, function(){
-      $(this).text('complete');
-      $(this).parent().removeClass('completed-effect');
-    });
   });
 
 });
