@@ -3,6 +3,7 @@
 //User can click on task in list-item and remove task
 
 $(function(){
+  "use strict";
   var input;
   var valid;
   var $inputBox = $('#input-box');
