@@ -7,7 +7,7 @@ input[type=text]:focus, input[type=button]:focus{
 /* style */
 
 html {
-  background: url(bg.jpg) no-repeat center center fixed; 
+  background: url(http://666a658c624a3c03a6b2-25cda059d975d2f318c03e90bcf17c40.r92.cf1.rackcdn.com/unsplash_52cd96f512830_1.JPG) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -28,7 +28,11 @@ a {
 }
 
 .box-shadow{
-  box-shadow:4px 4px 4px hsla(0,0%,0%,.5);
+  box-shadow:2px 4px 8px hsla(0,0%,0%,.5);
+}
+
+.hidden{
+  display: none;
 }
 
 .container{
@@ -61,56 +65,62 @@ input[type=text]{
 }
 
 /*Submit button*/
-input[type=button]{
-  font-size: .75em;
-  border: 1px solid #000;
-  background: #000;
+input[type=submit]{
+  position: relative;
+  top: 6px;
+  font-size: 2em;
+  border: none;
+  background: none;
+  border-radius: 100%;
   color: #fff;
-  font-weight: 100;
-  padding: 8px 6px;
+  font-weight: 700;
 }
 
-input[type=button]:active{
+input[type=submit]:active{
   -webkit-box-shadow: inset 2px 2px 1px #242424;
   -moz-box-shadow: inset 2px 2px 1px #242424;
   box-shadow: inset 2px 2px 1px #242424;
 }
 
 /*Task Area*/
-/*How can I center the list*/
 ol{
   margin:95px auto;
   text-align: center;
 }
 
 li{
-  width: 80%;  
   margin: 10px auto;
+  width: 500px;
 }
 
-.task, .completed-button, .remove-button{
+.task, .button{
   padding: 10px;
-  float: left;
-  margin: 5px 5px;
 }
 
 .task{
-  width: 500px;
+  position: relative;
   color: #000;
   background: #fff;
+  margin: 10px auto;
+  clear: right;
+  cursor:pointer;
 }
 
-.completed-button{
-  width:100px;
+.button{
+  float: right;
+  width: 20px;
+  text-align:center;
+  margin-bottom: 10px;
+  cursor:pointer;
+}
+
+.completed{
   background: #22B545;
-  text-align:center;
 }
 
-.remove-button{
-  width:100px;
+.remove{
   background: red;
-  text-align:center;
-  box-shadow:4px 4px 4px hsla(0,0%,0%,.5);
+  margin-right: 5px;
 }
 
 .completed-effect{
