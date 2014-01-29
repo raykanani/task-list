@@ -1,32 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="description" content="Thinkful Project - WIshlist" />
+<meta name="description" content="Thinkful Project - Wishlist" />
 <meta charset=utf-8 />
 <link rel="stylesheet" type="text/css" href="style.css" />
 <title>Wishlist</title>
 </head>
 <body>
   <div class="container">
-    <form action="get">
+    <form>
       <div class="get-task">
         <h1>What is on your bucket list?</h1>
         <input type="text" id="input-box" autocomplete="off">
-        <input type="button" value="submit" class="submit">
+        <input type="submit" value="+" class="submit hidden">
       </div>  
     </form>
     
     <ol>
       <li>
-        <div class="task">
+        <div class="task box-shadow">
           Task
         </div>
-        <div class="completed-button">complete</div>
+        <div class="completed button hidden"><span class="symbol">&#10003;</span></div>
+        <div class="remove button hidden"><span class="symbol">&#10005;</span></div>
       </li>
     </ol>
   </div>
-<!--updated this to 1.10 on google server and it changed jquery effect -->
-<script src="//code.jquery.com/jquery-1.8.3.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
