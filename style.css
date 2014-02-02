@@ -9,7 +9,7 @@ input[type=text]:focus, input[type=button]:focus{
 html {
   background: url(http://666a658c624a3c03a6b2-25cda059d975d2f318c03e90bcf17c40.r92.cf1.rackcdn.com/unsplash_52cd96f512830_1.JPG) no-repeat center fixed; 
   background-size: auto 100%;
-  min-height: 900px;
+  min-height: 100%;
 }
 
 body {
