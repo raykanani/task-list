@@ -20,7 +20,7 @@ body {
   font-weight: 100;
   font-size: 18px;
   letter-spacing: 1px;
-  min-width: 980px;
+  min-width: 480px;
 }
 
 a {
@@ -36,7 +36,7 @@ a {
 }
 
 .container{
-  width: 960px;
+  width: 90%;
   margin: 0 auto;
 }
 
@@ -90,7 +90,8 @@ ol{
 
 li{
   margin: 10px auto;
-  width: 500px;
+  max-width: 500px;
+  min-width: 400px;
 }
 
 .task, .button{
