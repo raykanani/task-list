@@ -22,6 +22,7 @@ body {
   font-size: 18px;
   letter-spacing: 1px;
   min-width: 480px;
+  height: 100%;
 }
 
 a {
