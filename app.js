@@ -76,6 +76,11 @@ $(function(){
     toggleButtons.apply(this);
   });
   
+  //When user clicks on body
+  //Hide buttons
+  $('#input-box').click(
+    resetButtons);
+  
   //When user clicks on completed button
   //Add completed effect to sibling task class
   $orderList.on('click', '.completed', toggleCompleted);
@@ -83,13 +88,9 @@ $(function(){
   //When user clicks remove button
   //Remove list element
   $orderList.on('click', '.remove', removeTask);
-      
- 
-  $('submit').click(
-    getInput,
-    addToList
-  );
   
+  //when user hits submit or enter in form
+  //getinput and add to to list
   $('#wishlist-form').on('submit', function(e){
     e.preventDefault();
     getInput();
