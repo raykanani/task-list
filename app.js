@@ -3,11 +3,15 @@
 //User can click on task in list-item and remove task
 
 $(function(){
-  "use strict";
+  'use strict'
+//User can add task to list-item
+//User can click on task in list-item and mark complete
+//User can click on task in list-item and remove task
   var input;
   var valid;
   var $inputBox = $('#input-box');
   var $orderList = $('ol');
+  var $taskItems = $('li');
   var $buttons = $('.button');
   //Can I make these variables cleaner by pulling them from the HTML file?
   //Not sure how to select only part of the list item?
@@ -21,7 +25,12 @@ $(function(){
     $orderList.append(listItemOpen + input + listItemClose);
   };
   
-  //Show or hide buttons
+    //Reset buttons on all task items to hide
+  var resetButtons = function(){
+    $('li').children('.button').addClass("hidden");
+  };
+  
+  //Show or hide buttons on sibling
   var toggleButtons = function(){
     $(this).siblings().toggleClass("hidden");
   };
@@ -60,8 +69,12 @@ $(function(){
   };
   
   //When user clicks on task div
+  //hide buttons on sibling tasks
   //show buttons
-  $orderList.on('click', '.task', toggleButtons);
+  $orderList.on('click', '.task', function(){
+    resetButtons();
+    toggleButtons.apply(this);
+  });
   
   //When user clicks on completed button
   //Add completed effect to sibling task class
@@ -71,21 +84,15 @@ $(function(){
   //Remove list element
   $orderList.on('click', '.remove', removeTask);
       
-  
-  //Add list-item to ordered list when user hits submit
-  //I am having trouble when I modify the button type to 'submit'?
-  //The page reloads
+ 
   $('submit').click(
     getInput,
     addToList
   );
   
-  $('#input-box').keydown(function(e){
-    if (e.which == 13){
-      e.preventDefault();
-      getInput();
-      addToList();
-    }
+  $('#wishlist-form').on('submit', function(e){
+    e.preventDefault();
+    getInput();
+    addToList();
   });
-
 });
